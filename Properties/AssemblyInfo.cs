@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("SEPluginTemplate")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("FPSCounter")]
+[assembly: AssemblyDescription("FPS Counter for Space Engineers.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("WesternGamer")]
-[assembly: AssemblyProduct("SEPluginTemplate")]
+[assembly: AssemblyProduct("FPSCounter")]
 [assembly: AssemblyCopyright("Copyright © WesternGamer 2021")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
