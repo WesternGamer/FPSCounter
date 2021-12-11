@@ -7,7 +7,7 @@ namespace FPSCounter
     {
         public void Dispose()
         {
-            
+
         }
 
         public void Init(object gameInstance)
@@ -17,7 +17,7 @@ namespace FPSCounter
 
         public void Update()
         {
-            
+
         }
     }
 }

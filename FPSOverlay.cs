@@ -4,8 +4,8 @@ using Sandbox.Game.Gui;
 using Sandbox.Game.Multiplayer;
 using Sandbox.Graphics;
 using System;
-using VRageMath;
 using System.Threading;
+using VRageMath;
 
 namespace FPSCounter
 {
@@ -13,7 +13,7 @@ namespace FPSCounter
     {
         public static FPSOverlay Instance;
 
-        private Thread DataUpdateThread;
+        private readonly Thread DataUpdateThread;
 
         private int FPS = 0;
         private float SIMSpeed = 0f;
@@ -26,7 +26,7 @@ namespace FPSCounter
             base.CanHaveFocus = false;
             m_canShareInput = false;
             Instance = this;
-            DataUpdateThread = new Thread(new ThreadStart(this.Update))
+            DataUpdateThread = new Thread(new ThreadStart(Update))
             {
                 IsBackground = true
             };
@@ -69,6 +69,7 @@ namespace FPSCounter
 
                 if (Sync.Layer != null)
                     ServerSIMSpeed = Sync.ServerSimulationRatio;
+
                 Thread.Sleep(500);
             }
         }
