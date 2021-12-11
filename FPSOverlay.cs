@@ -1,5 +1,7 @@
-﻿using Sandbox.Engine.Utils;
+﻿using Sandbox.Engine.Physics;
+using Sandbox.Engine.Utils;
 using Sandbox.Game.Gui;
+using Sandbox.Game.Multiplayer;
 using Sandbox.Graphics;
 using System;
 using VRageMath;
@@ -21,7 +23,14 @@ namespace FPSCounter
         public override bool Draw()
         {
             Vector2 stringPosition = MyGuiManager.ComputeFullscreenGuiCoordinate(VRage.Utils.MyGuiDrawAlignEnum.HORISONTAL_LEFT_AND_VERTICAL_TOP, 5, 5);
-            MyGuiManager.DrawString("White", "FPS: " + Convert.ToString(MyFpsManager.GetFps()), stringPosition, 0.5f);
+            MyGuiManager.DrawString("White", "FPS: " + Convert.ToString(MyFpsManager.GetFps()), stringPosition, 0.5f, new Color(0, 255, 0, 255));
+            stringPosition.Y += 0.01f;
+            MyGuiManager.DrawString("White", "SS: " + Convert.ToString(MyPhysics.SimulationRatio), stringPosition, 0.5f, new Color(0, 255, 0, 255));
+            stringPosition.Y += 0.01f;
+            if (Sync.Layer != null)
+            {
+                MyGuiManager.DrawString("White", "Server SS: " + Convert.ToString(Sync.ServerSimulationRatio), stringPosition, 0.5f, new Color(0, 255, 0, 255));
+            }
             return base.Draw();
         }
 
