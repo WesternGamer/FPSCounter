@@ -118,6 +118,8 @@
     <Reference Include="SpaceEngineers.ObjectBuilders.XmlSerializers">
       <HintPath>..\..\Games\steamapps\common\SpaceEngineers\Bin64\SpaceEngineers.ObjectBuilders.XmlSerializers.dll</HintPath>
     </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="VRage">
       <HintPath>..\..\Games\steamapps\common\SpaceEngineers\Bin64\VRage.dll</HintPath>
     </Reference>
