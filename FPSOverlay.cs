@@ -25,6 +25,7 @@ namespace FPSCounter
             m_drawEvenWithoutFocus = true;
             base.CanHaveFocus = false;
             m_canShareInput = false;
+            m_canCloseInCloseAllScreenCalls = false;
             Instance = this;
             DataUpdateThread = new Thread(new ThreadStart(Update))
             {
