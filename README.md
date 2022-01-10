@@ -1,7 +1,5 @@
 # FPSCounter
 
-This is a template to help you make a Space Engineers Plugin.
-
 ## Features
 Shows FPS, Sim speed, and server Sim speed on top left of screen.
 
