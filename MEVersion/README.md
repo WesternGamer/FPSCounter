@@ -1,4 +1,4 @@
-# FPSCounter
+# FPSCounter - Medieval Engineers Version
 
 ## Features
 Shows FPS, Sim speed, and server Sim speed on top left of screen.
