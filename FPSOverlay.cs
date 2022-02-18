@@ -1,5 +1,6 @@
 ﻿using Sandbox.Engine.Physics;
 using Sandbox.Engine.Utils;
+using Sandbox.Engine;
 using Sandbox.Game.Gui;
 using Sandbox.Game.Multiplayer;
 using Sandbox.Graphics;
@@ -18,6 +19,7 @@ namespace FPSCounter
         private int FPS = 0;
         private float SIMSpeed = 0f;
         private float ServerSIMSpeed = 0f;
+        private int Ping = 0;
 
         public FPSOverlay() : base(new Vector2(0.5f, 0.5f), default(Vector2), null, isTopMostScreen: true)
         {
@@ -45,6 +47,9 @@ namespace FPSCounter
             stringPosition.Y += 0.01f;
 
             MyGuiManager.DrawString("White", "Server SS: " + Convert.ToString(ServerSIMSpeed), stringPosition, 0.5f, new Color(0, 255, 0, 255));
+            stringPosition.Y += 0.01f;
+
+            MyGuiManager.DrawString("White", "Ping: " + Ping.ToString(), stringPosition, 0.5f, new Color(0, 255, 0, 255));
 
             return base.Draw();
         }
@@ -69,7 +74,10 @@ namespace FPSCounter
                 SIMSpeed = MyPhysics.SimulationRatio;
 
                 if (Sync.Layer != null)
+                {
                     ServerSIMSpeed = Sync.ServerSimulationRatio;
+                    Ping = (int)MyGeneralStats.Static.Ping;
+                }
 
                 Thread.Sleep(500);
             }
