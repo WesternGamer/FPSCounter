@@ -74,7 +74,7 @@ namespace FPSCounter.GUI
                 TextAlign = MyGuiDrawAlignEnum.HORISONTAL_LEFT_AND_VERTICAL_TOP,
                 TextBoxAlign = MyGuiDrawAlignEnum.HORISONTAL_LEFT_AND_VERTICAL_TOP,
                 // TODO: Add 2 short lines of text here if the player needs to know something. Ask for feedback here. Etc.
-                Text = new StringBuilder("\r\nTODO")
+                Text = new StringBuilder("\r\nCustomization options for FPS Counter.")
             };
 
             closeButton = new MyGuiControlButton(new Vector2(0f, 0.2f), originAlign: MyGuiDrawAlignEnum.HORISONTAL_CENTER_AND_VERTICAL_TOP, text: MyTexts.Get(MyCommonTexts.Ok), onButtonClick: OnOk);
