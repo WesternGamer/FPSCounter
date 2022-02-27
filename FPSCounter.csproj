@@ -58,7 +58,12 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Config\PersistentConfig.cs" />
+    <Compile Include="Config\PluginConfig.cs" />
     <Compile Include="FPSOverlay.cs" />
+    <Compile Include="GUI\MyPluginConfigDialog.cs" />
+    <Compile Include="Logging\LogFormatter.cs" />
+    <Compile Include="Logging\PluginLogger.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -120,6 +125,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
     <Reference Include="VRage">
       <HintPath>..\..\Games\steamapps\common\SpaceEngineers\Bin64\VRage.dll</HintPath>
     </Reference>
@@ -187,6 +193,7 @@
       <HintPath>..\..\Games\steamapps\common\SpaceEngineers\Bin64\VRage.XmlSerializers.dll</HintPath>
     </Reference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>move $(TargetPath) "D:\Games\steamapps\common\SpaceEngineers\Bin64\Plugins" &amp; C: &amp; cd "C:\Program Files (x86)\Steam" &amp; steam steam://rungameid/244850</PostBuildEvent>

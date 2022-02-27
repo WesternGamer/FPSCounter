@@ -7,6 +7,7 @@ using Sandbox.Graphics;
 using System;
 using System.Threading;
 using VRageMath;
+using FPSCounter.Config;
 
 namespace FPSCounter
 {
@@ -15,6 +16,7 @@ namespace FPSCounter
         public static FPSOverlay Instance;
 
         private readonly Thread DataUpdateThread;
+        private PluginConfig Config => Main.Instance.Config;
 
         private int FPS = 0;
         private float SIMSpeed = 0f;
@@ -40,17 +42,29 @@ namespace FPSCounter
         {
             Vector2 stringPosition = MyGuiManager.ComputeFullscreenGuiCoordinate(VRage.Utils.MyGuiDrawAlignEnum.HORISONTAL_LEFT_AND_VERTICAL_TOP, 5, 5);
 
-            MyGuiManager.DrawString("White", "FPS: " + Convert.ToString(FPS), stringPosition, 0.5f, new Color(0, 255, 0, 255));
-            stringPosition.Y += 0.01f;
-
-            MyGuiManager.DrawString("White", "SS: " + Convert.ToString(SIMSpeed), stringPosition, 0.5f, new Color(0, 255, 0, 255));
-            stringPosition.Y += 0.01f;
-
-            MyGuiManager.DrawString("White", "Server SS: " + Convert.ToString(ServerSIMSpeed), stringPosition, 0.5f, new Color(0, 255, 0, 255));
-            stringPosition.Y += 0.01f;
-
-            MyGuiManager.DrawString("White", "Ping: " + Ping.ToString(), stringPosition, 0.5f, new Color(0, 255, 0, 255));
-
+            if (Config.ShowFPS)
+            {
+                MyGuiManager.DrawString("White", $"FPS: {FPS}", stringPosition, 0.5f, Config.TextColor);
+                stringPosition.Y += 0.01f;
+            }
+            
+            if (Config.ShowSS)
+            {
+                MyGuiManager.DrawString("White", $"SS: {SIMSpeed}", stringPosition, 0.5f, Config.TextColor);
+                stringPosition.Y += 0.01f;
+            }
+            
+            if (Config.ShowServerSS)
+            {
+                MyGuiManager.DrawString("White", $"Server SS: {ServerSIMSpeed}", stringPosition, 0.5f, Config.TextColor);
+                stringPosition.Y += 0.01f;
+            }
+            
+            if (Config.ShowPing)
+            {
+                MyGuiManager.DrawString("White", $"Ping: {Ping}", stringPosition, 0.5f, Config.TextColor);
+            }
+            
             return base.Draw();
         }
 
