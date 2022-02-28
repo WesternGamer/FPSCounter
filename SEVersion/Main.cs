@@ -30,6 +30,11 @@ namespace FPSCounter
         {
             Instance = this;
 
+            if (Directory.Exists(Path.Combine(MyFileSystem.UserDataPath, "Storage\\PluginData")))
+            {
+                Directory.CreateDirectory(Path.Combine(MyFileSystem.UserDataPath, "Storage\\PluginData"));
+            }
+
             var configPath = Path.Combine(MyFileSystem.UserDataPath, "Storage\\PluginData", ConfigFileName);
             config = PersistentConfig<PluginConfig>.Load(Log, configPath);
 
