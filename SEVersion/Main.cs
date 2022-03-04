@@ -30,7 +30,7 @@ namespace FPSCounter
         {
             Instance = this;
 
-            if (Directory.Exists(Path.Combine(MyFileSystem.UserDataPath, "Storage\\PluginData")))
+            if (!Directory.Exists(Path.Combine(MyFileSystem.UserDataPath, "Storage\\PluginData")))
             {
                 Directory.CreateDirectory(Path.Combine(MyFileSystem.UserDataPath, "Storage\\PluginData"));
             }
