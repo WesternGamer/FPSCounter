@@ -20,6 +20,8 @@ namespace FPSCounter
         private PersistentConfig<PluginConfig> config;
         private static readonly string ConfigFileName = $"{Name}.cfg";
 
+        private TitlebarStats TitlebarStats { get; set; }
+
         public void Dispose()
         {
             Instance = null;
@@ -39,11 +41,12 @@ namespace FPSCounter
             config = PersistentConfig<PluginConfig>.Load(Log, configPath);
 
             MyGuiSandbox.AddScreen(new FPSOverlay());
+            TitlebarStats = new TitlebarStats();
         }
 
         public void Update()
         {
-
+            TitlebarStats.Instance.Draw();
         }
 
         public void OpenConfigDialog()

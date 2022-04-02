@@ -62,6 +62,7 @@
     <Compile Include="Config\PluginConfig.cs" />
     <Compile Include="FPSOverlay.cs" />
     <Compile Include="GUI\MyPluginConfigDialog.cs" />
+    <Compile Include="GUI\TitlebarStats.cs" />
     <Compile Include="Logging\LogFormatter.cs" />
     <Compile Include="Logging\PluginLogger.cs" />
     <Compile Include="Main.cs" />
