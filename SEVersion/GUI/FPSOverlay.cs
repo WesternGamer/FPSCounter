@@ -10,7 +10,7 @@ using VRageMath;
 using FPSCounter.Config;
 using Sandbox.Game.World;
 
-namespace FPSCounter
+namespace FPSCounter.GUI
 {
     internal class FPSOverlay : MyGuiScreenDebugBase //Not using MyGuiScreenBase as they can get removed. MyGuiScreenDebugBase screens get restored after they get removed in this case.
     {
@@ -41,7 +41,7 @@ namespace FPSCounter
 
         public override bool Draw()
         {
-            if (MyHud.HudState == 0 && MySession.Static != null && Config.HideSatsWithHud)
+            if (MyHud.HudState == 0 && MySession.Static != null && Config.HideStatsWithHud)
             {
                 return false;
             }

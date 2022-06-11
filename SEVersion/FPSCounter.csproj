@@ -60,7 +60,7 @@
   <ItemGroup>
     <Compile Include="Config\PersistentConfig.cs" />
     <Compile Include="Config\PluginConfig.cs" />
-    <Compile Include="FPSOverlay.cs" />
+    <Compile Include="GUI\FPSOverlay.cs" />
     <Compile Include="GUI\MyPluginConfigDialog.cs" />
     <Compile Include="GUI\TitlebarStats.cs" />
     <Compile Include="Logging\LogFormatter.cs" />

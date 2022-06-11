@@ -66,7 +66,7 @@ namespace FPSCounter.GUI
             CreateCheckbox(out showSSLabel, out showSSCheckbox, config.ShowSS, value => config.ShowSS = value, "Show Sim speed", "Enables Sim speed counter.");
             CreateCheckbox(out showServerSSLabel, out showServerSSCheckbox, config.ShowServerSS, value => config.ShowServerSS = value, "Show server Sim speed", "Enables server Sim speed counter.");
             CreateCheckbox(out showPingLabel, out showPingCheckbox, config.ShowPing, value => config.ShowPing = value, "Show ping", "Enables ping counter.");
-            CreateCheckbox(out hideStatsWithHudLabel, out hideStatsWithHudCheckbox, config.HideSatsWithHud, value => config.HideSatsWithHud = value, "Hide stats when hud is hidden.", "The caption explains it all.");
+            CreateCheckbox(out hideStatsWithHudLabel, out hideStatsWithHudCheckbox, config.HideStatsWithHud, value => config.HideStatsWithHud = value, "Hide stats when hud is hidden.", "The caption explains it all.");
             CreateColorSelector(out colorLabel, out colorSlider, config.TextColor, value => config.TextColor = value, "Text color", "Change the text color.");
 
             infoText = new MyGuiControlMultilineText

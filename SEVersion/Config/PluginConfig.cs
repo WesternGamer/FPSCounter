@@ -65,7 +65,7 @@ namespace FPSCounter.Config
             set => SetValue(ref textColor, value);
         }
 
-        public bool HideSatsWithHud
+        public bool HideStatsWithHud
         {
             get => hideStatsWithHud;
             set => SetValue(ref hideStatsWithHud, value);
