@@ -8,6 +8,7 @@ using System;
 using System.Threading;
 using VRageMath;
 using FPSCounter.Config;
+using Sandbox.Game.World;
 
 namespace FPSCounter
 {
@@ -40,6 +41,11 @@ namespace FPSCounter
 
         public override bool Draw()
         {
+            if (MyHud.HudState == 0 && MySession.Static != null && Config.HideSatsWithHud)
+            {
+                return false;
+            }
+
             Vector2 stringPosition = MyGuiManager.ComputeFullscreenGuiCoordinate(VRage.Utils.MyGuiDrawAlignEnum.HORISONTAL_LEFT_AND_VERTICAL_TOP, 5, 5);
 
             if (Config.ShowFPS)

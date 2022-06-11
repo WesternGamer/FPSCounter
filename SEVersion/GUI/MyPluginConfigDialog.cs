@@ -25,6 +25,8 @@ namespace FPSCounter.GUI
         private MyGuiControlCheckbox showPingCheckbox;
         private MyGuiControlLabel colorLabel;
         private MyGuiControlColor colorSlider;
+        private MyGuiControlLabel hideStatsWithHudLabel;
+        private MyGuiControlCheckbox hideStatsWithHudCheckbox;
 
         // TODO: Add member variables for your UI controls here
 
@@ -64,8 +66,8 @@ namespace FPSCounter.GUI
             CreateCheckbox(out showSSLabel, out showSSCheckbox, config.ShowSS, value => config.ShowSS = value, "Show Sim speed", "Enables Sim speed counter.");
             CreateCheckbox(out showServerSSLabel, out showServerSSCheckbox, config.ShowServerSS, value => config.ShowServerSS = value, "Show server Sim speed", "Enables server Sim speed counter.");
             CreateCheckbox(out showPingLabel, out showPingCheckbox, config.ShowPing, value => config.ShowPing = value, "Show ping", "Enables ping counter.");
+            CreateCheckbox(out hideStatsWithHudLabel, out hideStatsWithHudCheckbox, config.HideSatsWithHud, value => config.HideSatsWithHud = value, "Hide stats when hud is hidden.", "The caption explains it all.");
             CreateColorSelector(out colorLabel, out colorSlider, config.TextColor, value => config.TextColor = value, "Text color", "Change the text color.");
-            // TODO: Create your UI controls here
 
             infoText = new MyGuiControlMultilineText
             {
@@ -73,11 +75,10 @@ namespace FPSCounter.GUI
                 OriginAlign = MyGuiDrawAlignEnum.HORISONTAL_CENTER_AND_VERTICAL_TOP,
                 TextAlign = MyGuiDrawAlignEnum.HORISONTAL_LEFT_AND_VERTICAL_TOP,
                 TextBoxAlign = MyGuiDrawAlignEnum.HORISONTAL_LEFT_AND_VERTICAL_TOP,
-                // TODO: Add 2 short lines of text here if the player needs to know something. Ask for feedback here. Etc.
                 Text = new StringBuilder("\r\nCustomization options for FPS Counter.")
             };
 
-            closeButton = new MyGuiControlButton(new Vector2(0f, 0.2f), originAlign: MyGuiDrawAlignEnum.HORISONTAL_CENTER_AND_VERTICAL_TOP, text: MyTexts.Get(MyCommonTexts.Ok), onButtonClick: OnOk);
+            closeButton = new MyGuiControlButton(new Vector2(0f, 0.23f), originAlign: MyGuiDrawAlignEnum.HORISONTAL_CENTER_AND_VERTICAL_TOP, text: MyTexts.Get(MyCommonTexts.Ok), onButtonClick: OnOk);
         }
 
         private void OnOk(MyGuiControlButton _) => CloseScreen();
@@ -121,7 +122,7 @@ namespace FPSCounter.GUI
             layoutTable = new MyLayoutTable(this, new Vector2(-0.22f, -0.28f), 0.55f * size);
             layoutTable.SetColumnWidths(450f, 100f);
             // TODO: Add more row heights here as needed
-            layoutTable.SetRowHeights(90f, 90f, 90f, 90f, 90f, 150f);
+            layoutTable.SetRowHeights(90f, 90f, 90f, 90f, 90f, 90f, 150f);
 
             var row = 0;
 
@@ -145,7 +146,9 @@ namespace FPSCounter.GUI
             layoutTable.Add(colorSlider, MyAlignH.Center, MyAlignV.Center, row, 1);
             row++;
 
-            // TODO: Layout your UI controls here
+            layoutTable.Add(hideStatsWithHudLabel, MyAlignH.Left, MyAlignV.Center, row, 0);
+            layoutTable.Add(hideStatsWithHudCheckbox, MyAlignH.Center, MyAlignV.Center, row, 1);
+            row++;
 
             layoutTable.Add(infoText, MyAlignH.Left, MyAlignV.Top, row, 0, colSpan: 2);
             row++;

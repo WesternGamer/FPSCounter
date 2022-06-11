@@ -198,6 +198,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>move $(TargetPath) "D:\Games\steamapps\common\SpaceEngineers\Bin64\Plugins" &amp; C: &amp; cd "C:\Program Files (x86)\Steam" &amp; steam steam://rungameid/244850</PostBuildEvent>
+    <PostBuildEvent>move $(TargetPath) "D:\Games\steamapps\common\SpaceEngineers\Bin64\Plugins\Local"</PostBuildEvent>
   </PropertyGroup>
 </Project>

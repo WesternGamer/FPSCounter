@@ -33,7 +33,7 @@ namespace FPSCounter.Config
         private bool showServerSS = true;
         private bool showPing = true;
         private Color textColor = new Color(0, 255, 0, 255);
-        // TODO: Implement your config fields
+        private bool hideStatsWithHud = true;
 
         public bool ShowFPS
         {
@@ -65,6 +65,10 @@ namespace FPSCounter.Config
             set => SetValue(ref textColor, value);
         }
 
-        // TODO: Encapsulate them as properties
+        public bool HideSatsWithHud
+        {
+            get => hideStatsWithHud;
+            set => SetValue(ref hideStatsWithHud, value);
+        }
     }
 }
