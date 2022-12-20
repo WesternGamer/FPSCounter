@@ -3,6 +3,7 @@ using HarmonyLib;
 using Sandbox.Engine;
 using Sandbox.Engine.Physics;
 using Sandbox.Engine.Utils;
+using Sandbox.Game;
 using Sandbox.Game.Multiplayer;
 using System.Reflection;
 using System.Threading;
@@ -40,26 +41,26 @@ namespace FPSCounter.GUI
         {
             string text = "";
 
-            text += "Space Engineers - ";
+            text += MyPerGameSettings.BasicGameInfo.GameName;
 
             if (Config.ShowFPS)
             {
-                text += $"FPS: {FPS} - ";
+                text += $" - FPS: {FPS}";
             }
 
             if (Config.ShowSS)
             {
-                text += $"SS: {SIMSpeed} - ";
+                text += $" - SS: {SIMSpeed}";
             }
 
             if (Config.ShowServerSS)
             {
-                text += $"Server SS: {ServerSIMSpeed} - ";
+                text += $" - Server SS: {ServerSIMSpeed}";
             }
 
             if (Config.ShowPing)
             {
-                text += $"Ping: {Ping}";
+                text += $" - Ping: {Ping}";
             }
 
             MainWindow.Text = text;
