@@ -24,6 +24,7 @@ namespace FPSCounter
 
         public void Dispose()
         {
+            TitlebarStats.Dispose();
             Instance = null;
             Instance?.Dispose();
         }

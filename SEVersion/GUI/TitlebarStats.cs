@@ -5,6 +5,7 @@ using Sandbox.Engine.Physics;
 using Sandbox.Engine.Utils;
 using Sandbox.Game;
 using Sandbox.Game.Multiplayer;
+using System;
 using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
@@ -12,7 +13,7 @@ using VRage;
 
 namespace FPSCounter.GUI
 {
-    internal class TitlebarStats
+    internal class TitlebarStats : IDisposable
     {
         public static TitlebarStats Instance;
 
@@ -80,6 +81,14 @@ namespace FPSCounter.GUI
                 }
 
                 Thread.Sleep(500);
+            }
+        }
+
+        public void Dispose()
+        {
+            if (DataUpdateThread != null)
+            {
+                DataUpdateThread.Abort();
             }
         }
     }

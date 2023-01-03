@@ -102,5 +102,24 @@ namespace FPSCounter.GUI
                 Thread.Sleep(500);
             }
         }
+
+        public override bool CloseScreen(bool isUnloading = false)
+        {
+            if (DataUpdateThread != null)
+            {
+                DataUpdateThread.Abort();
+            }
+            
+            return base.CloseScreen(isUnloading);
+        }
+
+        public override void CloseScreenNow(bool isUnloading = false)
+        {
+            if (DataUpdateThread != null)
+            {
+                DataUpdateThread.Abort();
+            }
+            base.CloseScreenNow(isUnloading);
+        }
     }
 }
