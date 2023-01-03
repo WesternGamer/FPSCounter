@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("WesternGamer")]
 [assembly: AssemblyProduct("FPSCounter")]
-[assembly: AssemblyCopyright("Copyright © WesternGamer 2022")]
+[assembly: AssemblyCopyright("Copyright © WesternGamer 2023")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
