@@ -6,7 +6,6 @@ using Sandbox.Engine.Utils;
 using Sandbox.Game;
 using Sandbox.Game.Multiplayer;
 using System;
-using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
 using VRage;
@@ -38,7 +37,7 @@ namespace FPSCounter.GUI
             MainWindow = (Form)AccessTools.Field(MyVRage.Platform.Windows.GetType(), "m_form").GetValue(MyVRage.Platform.Windows);
         }
 
-        public void Draw()
+        public void UpdateTitleBar()
         {
             string text = "";
 
@@ -79,6 +78,8 @@ namespace FPSCounter.GUI
                     ServerSIMSpeed = Sync.ServerSimulationRatio;
                     Ping = (int)MyGeneralStats.Static.Ping;
                 }
+
+                UpdateTitleBar();
 
                 Thread.Sleep(500);
             }

@@ -47,7 +47,7 @@ namespace FPSCounter
 
         public void Update()
         {
-            TitlebarStats.Instance.Draw();
+
         }
 
         public void OpenConfigDialog()
