@@ -70,6 +70,11 @@ namespace FPSCounter.GUI
         {
             while (true)
             {
+                if (MainWindow.Disposing || MainWindow.IsDisposed)
+                {
+                    return;
+                }
+
                 FPS = MyFpsManager.GetFps();
                 SIMSpeed = MyPhysics.SimulationRatio;
 
