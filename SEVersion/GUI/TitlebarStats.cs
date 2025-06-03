@@ -63,7 +63,10 @@ namespace FPSCounter.GUI
                 text += $" - Ping: {Ping}";
             }
 
-            MainWindow.Text = text;
+            if (MainWindow != null)
+            {
+                MainWindow.Text = text;
+            }
         }
 
         private void Update()
