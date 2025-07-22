@@ -34,6 +34,7 @@ namespace FPSCounter.Config
         private bool showPing = true;
         private Color textColor = new Color(0, 255, 0, 255);
         private bool hideStatsWithHud = true;
+        private float scale = 0.5f;
 
         public bool ShowFPS
         {
@@ -69,6 +70,11 @@ namespace FPSCounter.Config
         {
             get => hideStatsWithHud;
             set => SetValue(ref hideStatsWithHud, value);
+        }
+        public float Scale
+        {
+            get => scale;
+            set => SetValue(ref scale, value);
         }
     }
 }

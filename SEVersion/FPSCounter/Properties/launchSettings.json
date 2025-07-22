@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "Space Engineers": {
+      "commandName": "Executable",
+      "executablePath": "D:\\SteamLibrary\\steamapps\\common\\SpaceEngineers\\Bin64\\SpaceEngineersLauncher.exe",
+      "workingDirectory": "D:\\SteamLibrary\\steamapps\\common\\SpaceEngineers\\Bin64",
+      "nativeDebugging": false,
+	  "hotReloadEnabled": true
+    }
+  }
+}

@@ -27,13 +27,14 @@ namespace FPSCounter.GUI
         private MyGuiControlColor colorSlider;
         private MyGuiControlLabel hideStatsWithHudLabel;
         private MyGuiControlCheckbox hideStatsWithHudCheckbox;
+        private MyGuiControlLabel scaleLabel;
+        private MyGuiControlSlider scaleSlider;
 
         // TODO: Add member variables for your UI controls here
 
-        private MyGuiControlMultilineText infoText;
         private MyGuiControlButton closeButton;
 
-        public MyPluginConfigDialog() : base(new Vector2(0.5f, 0.5f), MyGuiConstants.SCREEN_BACKGROUND_COLOR, new Vector2(0.5f, 0.7f), false, null, MySandboxGame.Config.UIBkOpacity, MySandboxGame.Config.UIOpacity)
+        public MyPluginConfigDialog() : base(new Vector2(0.5f, 0.5f), MyGuiConstants.SCREEN_BACKGROUND_COLOR, new Vector2(0.4f, 0.6f), false, null, MySandboxGame.Config.UIBkOpacity, MySandboxGame.Config.UIOpacity)
         {
             EnabledBackgroundFade = true;
             m_closeOnEsc = true;
@@ -66,19 +67,11 @@ namespace FPSCounter.GUI
             CreateCheckbox(out showSSLabel, out showSSCheckbox, config.ShowSS, value => config.ShowSS = value, "Show Sim speed", "Enables Sim speed counter.");
             CreateCheckbox(out showServerSSLabel, out showServerSSCheckbox, config.ShowServerSS, value => config.ShowServerSS = value, "Show server Sim speed", "Enables server Sim speed counter.");
             CreateCheckbox(out showPingLabel, out showPingCheckbox, config.ShowPing, value => config.ShowPing = value, "Show ping", "Enables ping counter.");
-            CreateCheckbox(out hideStatsWithHudLabel, out hideStatsWithHudCheckbox, config.HideStatsWithHud, value => config.HideStatsWithHud = value, "Hide stats when hud is hidden.", "The caption explains it all.");
+            CreateCheckbox(out hideStatsWithHudLabel, out hideStatsWithHudCheckbox, config.HideStatsWithHud, value => config.HideStatsWithHud = value, "Hide stats with HUD", "");
             CreateColorSelector(out colorLabel, out colorSlider, config.TextColor, value => config.TextColor = value, "Text color", "Change the text color.");
+            CreateSlider(out scaleLabel, out scaleSlider, config.Scale, value => config.Scale = value, "Scale", "");
 
-            infoText = new MyGuiControlMultilineText
-            {
-                Name = "InfoText",
-                OriginAlign = MyGuiDrawAlignEnum.HORISONTAL_CENTER_AND_VERTICAL_TOP,
-                TextAlign = MyGuiDrawAlignEnum.HORISONTAL_LEFT_AND_VERTICAL_TOP,
-                TextBoxAlign = MyGuiDrawAlignEnum.HORISONTAL_LEFT_AND_VERTICAL_TOP,
-                Text = new StringBuilder("\r\nCustomization options for FPS Counter.")
-            };
-
-            closeButton = new MyGuiControlButton(new Vector2(0f, 0.23f), originAlign: MyGuiDrawAlignEnum.HORISONTAL_CENTER_AND_VERTICAL_TOP, text: MyTexts.Get(MyCommonTexts.Ok), onButtonClick: OnOk);
+            closeButton = new MyGuiControlButton(new Vector2(0f, 0.22f), originAlign: MyGuiDrawAlignEnum.HORISONTAL_CENTER_AND_VERTICAL_TOP, text: MyTexts.Get(MyCommonTexts.Ok), onButtonClick: OnOk);
         }
 
         private void OnOk(MyGuiControlButton _) => CloseScreen();
@@ -108,7 +101,7 @@ namespace FPSCounter.GUI
                 OriginAlign = MyGuiDrawAlignEnum.HORISONTAL_CENTER_AND_VERTICAL_TOP
             };
 
-            colorControl = new MyGuiControlColor(label, 0.8f, Vector2.Zero, value, value, MyStringId.GetOrCompute(tooltip))
+            colorControl = new MyGuiControlColor("", 0.8f, Vector2.Zero, value, value, MyStringId.GetOrCompute(tooltip))
             {
                 OriginAlign = MyGuiDrawAlignEnum.HORISONTAL_CENTER_AND_VERTICAL_TOP,
                 Enabled = true,
@@ -116,13 +109,29 @@ namespace FPSCounter.GUI
             colorControl.OnChange += cb => store(cb.Color);
         }
 
+        private void CreateSlider(out MyGuiControlLabel labelControl, out MyGuiControlSlider sliderControl, float value, Action<float> store, string label, string tooltip)
+        {
+            labelControl = new MyGuiControlLabel
+            {
+                Text = label,
+                OriginAlign = MyGuiDrawAlignEnum.HORISONTAL_CENTER_AND_VERTICAL_TOP
+            };
+
+            sliderControl = new MyGuiControlSlider(Vector2.Zero, defaultValue: value, toolTip: tooltip)
+            {
+                OriginAlign = MyGuiDrawAlignEnum.HORISONTAL_CENTER_AND_VERTICAL_TOP,
+                Enabled = true,
+            };
+            sliderControl.ValueChanged += cb => store(cb.Value);
+        }
+
         private void LayoutControls()
         {
             var size = Size ?? Vector2.One;
-            layoutTable = new MyLayoutTable(this, new Vector2(-0.22f, -0.28f), 0.55f * size);
-            layoutTable.SetColumnWidths(450f, 100f);
+            layoutTable = new MyLayoutTable(this, new Vector2(-0.16f, -0.22f), 0.55f * size);
+            layoutTable.SetColumnWidths(455f, 100f);
             // TODO: Add more row heights here as needed
-            layoutTable.SetRowHeights(90f, 90f, 90f, 90f, 90f, 90f, 150f);
+            layoutTable.SetRowHeights(50f, 50f, 50f, 50f, 50f, 60f, 50f, 60f, 50f);
 
             var row = 0;
 
@@ -142,15 +151,18 @@ namespace FPSCounter.GUI
             layoutTable.Add(showPingCheckbox, MyAlignH.Left, MyAlignV.Center, row, 1);
             row++;
 
-            layoutTable.Add(colorLabel, MyAlignH.Left, MyAlignV.Center, row, 0);
-            layoutTable.Add(colorSlider, MyAlignH.Center, MyAlignV.Center, row, 1);
-            row++;
-
             layoutTable.Add(hideStatsWithHudLabel, MyAlignH.Left, MyAlignV.Center, row, 0);
             layoutTable.Add(hideStatsWithHudCheckbox, MyAlignH.Center, MyAlignV.Center, row, 1);
             row++;
 
-            layoutTable.Add(infoText, MyAlignH.Left, MyAlignV.Top, row, 0, colSpan: 2);
+            layoutTable.Add(colorLabel, MyAlignH.Left, MyAlignV.Center, row, 0);
+            row++;
+            layoutTable.Add(colorSlider, MyAlignH.Center, MyAlignV.Center, row, 0, colSpan: 2);
+            row++;
+
+            layoutTable.Add(scaleLabel, MyAlignH.Left, MyAlignV.Center, row, 0);
+            row++;
+            layoutTable.Add(scaleSlider, MyAlignH.Center, MyAlignV.Center, row, 0, colSpan: 2);
             row++;
 
             Controls.Add(closeButton);

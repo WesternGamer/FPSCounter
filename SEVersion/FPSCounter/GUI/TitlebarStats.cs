@@ -1,10 +1,9 @@
 ﻿using FPSCounter.Config;
 using HarmonyLib;
-using Sandbox.Engine;
-using Sandbox.Engine.Physics;
-using Sandbox.Engine.Utils;
+using ParallelTasks;
+using Sandbox.Engine.Multiplayer;
 using Sandbox.Game;
-using Sandbox.Game.Multiplayer;
+using Sandbox.Game.World;
 using System;
 using System.Threading;
 using System.Windows.Forms;
@@ -18,11 +17,6 @@ namespace FPSCounter.GUI
 
         private Form MainWindow;
         private static PluginConfig Config => Main.Instance.Config;
-
-        private int FPS = 0;
-        private float SIMSpeed = 0f;
-        private float ServerSIMSpeed = 0f;
-        private int Ping = 0;
 
         private readonly Thread DataUpdateThread;
 
@@ -39,34 +33,54 @@ namespace FPSCounter.GUI
 
         public void UpdateTitleBar()
         {
+            string text = GetTitleBarString();
+
+            if (MainWindow != null)
+            {
+                MainWindow.Invoke((System.Windows.Forms.MethodInvoker)delegate
+                {
+                    MainWindow.Text = text;
+                });
+            }
+        }
+
+        public string GetTitleBarString()
+        {
             string text = "";
 
             text += MyPerGameSettings.BasicGameInfo.GameName;
 
             if (Config.ShowFPS)
             {
-                text += $" - FPS: {FPS}";
+                text += $" - FPS: {Singleton<Data>.Instance.Fps}";
+            }
+
+            if (MySession.Static == null)
+            {
+                return text;
             }
 
             if (Config.ShowSS)
             {
-                text += $" - SS: {SIMSpeed}";
+                text += $" - SS: {Singleton<Data>.Instance.SimSpeed}";
+            }
+
+            if (MyMultiplayer.Static == null || MyMultiplayer.Static.IsServer)
+            {
+                return text;
             }
 
             if (Config.ShowServerSS)
             {
-                text += $" - Server SS: {ServerSIMSpeed}";
+                text += $" - Server SS: {Singleton<Data>.Instance.ServerSimSpeed}";
             }
 
             if (Config.ShowPing)
             {
-                text += $" - Ping: {Ping}";
+                text += $" - Ping: {Singleton<Data>.Instance.Ping}";
             }
 
-            if (MainWindow != null)
-            {
-                MainWindow.Text = text;
-            }
+            return text;
         }
 
         private void Update()
@@ -76,15 +90,6 @@ namespace FPSCounter.GUI
                 if (MainWindow.Disposing || MainWindow.IsDisposed)
                 {
                     return;
-                }
-
-                FPS = MyFpsManager.GetFps();
-                SIMSpeed = MyPhysics.SimulationRatio;
-
-                if (Sync.Layer != null)
-                {
-                    ServerSIMSpeed = Sync.ServerSimulationRatio;
-                    Ping = (int)MyGeneralStats.Static.Ping;
                 }
 
                 UpdateTitleBar();
